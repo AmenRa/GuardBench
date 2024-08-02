@@ -1,0 +1,13 @@
+black
+black[jupyter]
+blackdoc
+pip-licenses
+isort
+mypy
+pytest
+pytest-cov
+pytest-xdist
+ruff
+twine
+typos
+wheel
