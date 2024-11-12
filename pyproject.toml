@@ -1,0 +1,6 @@
+[tool.ruff]
+# E501 ignore long comment lines (black should take care of that)
+ignore = ["E501"]
+
+[tool.isort]
+profile = "black"

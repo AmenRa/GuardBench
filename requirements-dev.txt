@@ -1,9 +1,10 @@
+bandit
 black
 black[jupyter]
 blackdoc
-pip-licenses
 isort
 mypy
+pip-licenses
 pytest
 pytest-cov
 pytest-xdist
