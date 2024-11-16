@@ -18,6 +18,7 @@
 It provides a common interface to 40 evaluation datasets, which are downloaded and converted into a [standardized format](data_format.md) for improved usability.
 It also allows to quickly [compare results and export](docs/report.md) `LaTeX` tables for scientific publications.
 [`GuardBench`](https://github.com/AmenRa/guardbench)'s benchmarking pipeline can also be leveraged on [custom datasets](docs/custom_dataset.md).
+
 [`GuardBench`](https://github.com/AmenRa/guardbench) was featured in [EMNLP 2024](https://2024.emnlp.org).
 The related paper is available [here](https://aclanthology.org/2024.emnlp-main.1022.pdf).
 
