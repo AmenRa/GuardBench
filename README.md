@@ -98,7 +98,8 @@ If you want to submit your results, please contact us.
     year = "2024",
     address = "Miami, Florida, USA",
     publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2024.emnlp-main.1022.pdf",
+    url = "https://aclanthology.org/2024.emnlp-main.1022",
+    doi = "10.18653/v1/2024.emnlp-main.1022",
     pages = "18393--18409",
 }
 ```
