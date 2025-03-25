@@ -22,6 +22,8 @@ It also allows to quickly [compare results and export](docs/report.md) `LaTeX` t
 [`GuardBench`](https://github.com/AmenRa/guardbench) was featured in [EMNLP 2024](https://2024.emnlp.org).
 The related paper is available [here](https://aclanthology.org/2024.emnlp-main.1022.pdf).
 
+[`GuardBench`](https://github.com/AmenRa/guardbench) has a public [leaderboard](https://huggingface.co/spaces/AmenRa/guardbench-leaderboard) available on HuggingFace.
+
 You can find the list of supported datasets [here](docs/datasets.md).
 A few of them requires authorization. Please, read [this](docs/get_datasets.md).
 
@@ -77,9 +79,8 @@ Browse the documentation for more details about:
 - How to leverage [`GuardBench`](https://github.com/AmenRa/guardbench)'s benchmarking pipeline on [custom datasets](docs/custom_dataset.md).
 
 ## 🏆 Leaderboard
-You can find [`GuardBench`](https://github.com/AmenRa/guardbench)'s leaderboard [here](https://huggingface.co/spaces/AmenRa/guardbench-leaderboard).
+You can find [`GuardBench`](https://github.com/AmenRa/guardbench)'s leaderboard [here](https://huggingface.co/spaces/AmenRa/guardbench-leaderboard). If you want to submit your results, please contact us.
 <!-- All results can be reproduced using the provided [`scripts`](scripts/effectiveness).   -->
-If you want to submit your results, please contact us.
 
 ## 👨‍💻 Authors
 - Elias Bassani (European Commission - Joint Research Centre)
