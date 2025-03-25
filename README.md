@@ -77,8 +77,8 @@ Browse the documentation for more details about:
 - How to leverage [`GuardBench`](https://github.com/AmenRa/guardbench)'s benchmarking pipeline on [custom datasets](docs/custom_dataset.md).
 
 ## 🏆 Leaderboard
-You can find [`GuardBench`](https://github.com/AmenRa/guardbench)'s leaderboard [here](docs/leaderboard.md).
-All results can be reproduced using the provided [`scripts`](scripts/effectiveness).  
+You can find [`GuardBench`](https://github.com/AmenRa/guardbench)'s leaderboard [here](https://huggingface.co/spaces/AmenRa/guardbench-leaderboard).
+<!-- All results can be reproduced using the provided [`scripts`](scripts/effectiveness).   -->
 If you want to submit your results, please contact us.
 
 ## 👨‍💻 Authors
