@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://repository-images.githubusercontent.com/837144095/f9e0cced-dd7d-4a3f-b77a-f77dd3746b20">
+</div>
+
 <p align="center">
   <!-- Python -->
   <a href="https://www.python.org" alt="Python"><img src="https://badges.aleen42.com/src/python.svg"></a>
