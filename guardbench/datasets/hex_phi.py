@@ -55,7 +55,7 @@ class HEx_PHI(Dataset):
         kwargs = {"fieldnames": ["text"]}
         dataset = []
 
-        data = read_csv(self.tmp_path / "category_1.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_1.csv", **kwargs)
         data = [{"text": x["text"], "category": "Illegal Activity"} for x in data]
         dataset += data
 
@@ -64,41 +64,41 @@ class HEx_PHI(Dataset):
         # data = [{"text": x["text"], "category": "Child Abuse Content"} for x in data]
         # dataset += data
 
-        data = read_csv(self.tmp_path / "category_3.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_3.csv", **kwargs)
         data = [{"text": x["text"], "category": "Hate Harass Violence"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_4.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_4.csv", **kwargs)
         data = [{"text": x["text"], "category": "Malware"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_5.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_5.csv", **kwargs)
         data = [{"text": x["text"], "category": "Physical Harm"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_6.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_6.csv", **kwargs)
         data = [{"text": x["text"], "category": "Economic Harm"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_7.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_7.csv", **kwargs)
         data = [{"text": x["text"], "category": "Fraud Deception"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_8.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_8.csv", **kwargs)
         data = [{"text": x["text"], "category": "Adult Content"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_9.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_9.csv", **kwargs)
         data = [{"text": x["text"], "category": "Political Campaigning"} for x in data]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_10.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_10.csv", **kwargs)
         data = [
             {"text": x["text"], "category": "Privacy Violation Activity"} for x in data
         ]
         dataset += data
 
-        data = read_csv(self.tmp_path / "category_11.csv", kwargs=kwargs)
+        data = read_csv(self.tmp_path / "category_11.csv", **kwargs)
         data = [
             {"text": x["text"], "category": "Tailored Financial Advice"} for x in data
         ]
