@@ -8,7 +8,7 @@ from ..evaluate import evaluate
 
 
 def get_results_table(results) -> None:
-    headers = ["Dataset", "F1", "Recall"]
+    headers = ["Dataset", "F1", "Recall", "AUPRC", "FPR", "FNR", "Precision"]
     return tabulate(results, headers=headers, tablefmt="github", disable_numparse=True)
 
 
@@ -76,6 +76,10 @@ def benchmark(
                 dataset.name,
                 "{:.3f}".format(round(report["f1"], 3)),
                 "{:.3f}".format(round(report["recall"], 3)),
+                "{:.3f}".format(round(report["auprc"], 3)),
+                "{:.3f}".format(round(report["fpr"], 3)),
+                "{:.3f}".format(round(report["fnr"], 3)),
+                "{:.3f}".format(round(report["precision"], 3)),
             ]
         )
 
