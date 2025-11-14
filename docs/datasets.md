@@ -1103,7 +1103,7 @@
 
 - Language(s): English
 - Source(s): Human-AI conversations / manually labelled
-- License: `MIT`
+- License: `CC BY-NC 4.0`
 - Alias: `beaver_tails_330k`
 
 <details>
