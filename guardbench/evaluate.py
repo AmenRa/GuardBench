@@ -62,9 +62,9 @@ def evaluate(y_true: dict, y_pred_prob: dict, threshold: float = 0.5) -> dict:
         mcc = matthews_corrcoef(y_true, y_pred_binary)
 
     return {
-        "precision": float(precision) if n > 0 else 0.0,
+        "precision": float(precision),
         "recall": float(recall),
-        "f1": float(f1) if n > 0 else 0.0,
+        "f1": float(f1),
         "mcc": float(mcc) if n > 0 else 0.0,
         "auprc": float(auprc) if n > 0 else 0.0,
         "sensitivity": float(sensitivity),
