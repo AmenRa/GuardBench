@@ -30,6 +30,50 @@ report = Report(
 )
 ```
 
+## Joint evidence
+
+`Report.joint_evidence()` reports what a declared full-shadow, parallel OR
+composition can establish from saved score maps over one fixed test file. It
+uses the `models` order passed to `Report` only for residual attribution.
+
+Run the benchmark after this feature is installed. Each score map then has a
+sidecar manifest that fingerprints the exact local `test.jsonl` bytes and the
+saved prediction file. The method requires those manifests by default; legacy
+score maps can be inspected only with `require_manifest=False`, and are marked
+as unverified.
+
+```python
+from guardbench import Report
+
+report = Report(
+    models=["guard_a", "guard_b"],
+    datasets=["xstest"],
+    out_dir="results",
+)
+joint = report.joint_evidence(
+    thresholds={"guard_a": 0.5, "guard_b": 0.5},
+    model_configurations={
+        "guard_a": {"model_id": "...", "revision": "..."},
+        "guard_b": {"model_id": "...", "revision": "..."},
+    },
+)
+```
+
+The result records population and source hashes, declared decision rules and
+model-configuration metadata, full-exposure validation, per-guard detection,
+union detection, static all-miss, ordered residual coverage, pairwise
+intersections, and benign union-flag burden when benign items exist. It reports
+no confidence interval without a declared sampling target. Configuration
+metadata is caller-declared in the generated report; it is not inferred from a
+result filename or authenticated by the sidecar. The sidecar is neither signed
+nor immutable, and does not authenticate model code, weights, or a remote
+service.
+
+The counts apply only to the saved fixed dataset bytes under a parallel
+full-shadow OR. They do **not** identify sequential route risk, intervention
+effects, adaptive robustness, calibration, causal complementarity, or
+deployment safety.
+
 You can display the report in `IPython` notebooks as follows:
 ```python
 report.display()

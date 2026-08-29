@@ -3,7 +3,7 @@ from importlib import import_module
 from tabulate import tabulate
 
 from ..paths import tmp_path
-from ..utils import remove_raw_data
+from ..utils import file_sha256, remove_raw_data
 from .custom_dataset import CustomDataset
 
 DATASETS = {
@@ -102,6 +102,19 @@ def load_dataset(dataset: str):
         dataset (str): Dataset to load.
     """
     return get_dataset(dataset).load()
+
+
+def load_dataset_with_fingerprint(dataset: str):
+    """Load a test set and verify that its bytes stayed stable while loading."""
+    loaded = get_dataset(dataset)
+    path = loaded.path / "test.jsonl"
+    if not path.exists():
+        loaded.load()
+    fingerprint_before_load = file_sha256(path)
+    loaded = loaded.load()
+    if file_sha256(path) != fingerprint_before_load:
+        raise RuntimeError(f"Dataset {dataset!r} changed while it was being loaded")
+    return loaded, fingerprint_before_load
 
 
 def load_datasets(datasets: list[str]):
