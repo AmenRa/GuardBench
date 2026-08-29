@@ -1,4 +1,5 @@
 import tarfile
+from hashlib import sha256
 from pathlib import Path
 from shutil import rmtree
 from zipfile import ZipFile
@@ -6,6 +7,15 @@ from zipfile import ZipFile
 import requests
 from tqdm import tqdm
 from unified_io import write_jsonl
+
+
+def file_sha256(path: str | Path) -> str:
+    """Return the SHA-256 digest of a file's exact bytes."""
+    digest = sha256()
+    with Path(path).open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def check_turn(turn: dict) -> bool:

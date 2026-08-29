@@ -3,8 +3,9 @@ from tabulate import tabulate
 from tqdm import tqdm
 from unified_io import create_path, write_json
 
-from ..datasets import DATASETS, load_dataset
+from ..datasets import DATASETS, load_dataset_with_fingerprint
 from ..evaluate import evaluate
+from ..utils import file_sha256
 
 metric_mapping = {
     "precision": "Precision",
@@ -76,7 +77,7 @@ def benchmark(
     results = []
     for i, dataset_name in enumerate(datasets):
         # Dataset --------------------------------------------------------------
-        dataset = load_dataset(dataset_name)
+        dataset, dataset_sha256 = load_dataset_with_fingerprint(dataset_name)
         batch_generator = dataset.generate_batches(batch_size)
 
         # Inference ------------------------------------------------------------
@@ -90,14 +91,37 @@ def benchmark(
             batch_ids, batch_y_true, batch_conversations = collate_fn(batch)
             ids += batch_ids
             y_true += batch_y_true
-            y_pred_prob += moderate(conversations=batch_conversations, **kwargs)
+            batch_scores = list(moderate(conversations=batch_conversations, **kwargs))
+            if len(batch_scores) != len(batch_ids):
+                raise ValueError(
+                    f"{model_name!r} returned {len(batch_scores)} score(s) for "
+                    f"a batch of {len(batch_ids)} item(s)"
+                )
+            y_pred_prob += batch_scores
+
+        if len(ids) != len(set(ids)):
+            raise ValueError(f"Dataset {dataset_name!r} contains duplicate item IDs")
+        if file_sha256(dataset.path / "test.jsonl") != dataset_sha256:
+            raise RuntimeError(f"Dataset {dataset_name!r} changed while scoring")
 
         y_true = dict(zip(ids, y_true))
         y_pred_prob = dict(zip(ids, y_pred_prob))
 
         # Save predictions -----------------------------------------------------
         pred_path = create_path(out_dir)
-        write_json(y_pred_prob, pred_path / dataset_name / f"{model_name}.json")
+        prediction_path = pred_path / dataset_name / f"{model_name}.json"
+        write_json(y_pred_prob, prediction_path)
+        write_json(
+            {
+                "schema_version": 1,
+                "dataset": dataset_name,
+                "model": model_name,
+                "n_items": len(y_true),
+                "dataset_sha256": dataset_sha256,
+                "prediction_sha256": file_sha256(prediction_path),
+            },
+            pred_path / dataset_name / f"{model_name}.manifest.json",
+        )
 
         # Evaluate -------------------------------------------------------------
         report = evaluate(y_true, y_pred_prob)
